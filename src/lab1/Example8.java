@@ -3,7 +3,7 @@ package lab1;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Task3 {
+public class Example8 {
     private static final Map<Integer, String> DAY_MAP = Map.of(
             1, "пн",
             2, "вт",
