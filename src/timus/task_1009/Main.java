@@ -1,16 +1,22 @@
-package timus.task_1877;
+package timus.task_1009;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         FastScanner scanner = new FastScanner();
-        int code1 = scanner.nextInt();
-        int code2 = scanner.nextInt();
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
 
-        if (code1 % 2 == 0 || code2 % 2 == 1) {
-            System.out.print("yes");
-        } else {
-            System.out.print("no");
+        long endsWithZero = 0;
+        long endsWithNonZero = k - 1L;
+
+        for (int length = 2; length <= n; length++) {
+            long nextEndsWithZero = endsWithNonZero;
+            long nextEndsWithNonZero = (endsWithZero + endsWithNonZero) * (k - 1L);
+            endsWithZero = nextEndsWithZero;
+            endsWithNonZero = nextEndsWithNonZero;
         }
+
+        System.out.print(endsWithZero + endsWithNonZero);
     }
 
     private static class FastScanner {

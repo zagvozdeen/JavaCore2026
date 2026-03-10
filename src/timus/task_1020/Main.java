@@ -1,33 +1,33 @@
-package timus.task_1005;
+package timus.task_1020;
+
+import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        Locale.setDefault(Locale.US);
+
         FastScanner scanner = new FastScanner();
         int n = scanner.nextInt();
-        int[] w = new int[n];
+        double r = scanner.nextDouble();
 
-        int total = 0;
+        double[] x = new double[n];
+        double[] y = new double[n];
+
         for (int i = 0; i < n; i++) {
-            w[i] = scanner.nextInt();
-            total += w[i];
+            x[i] = scanner.nextDouble();
+            y[i] = scanner.nextDouble();
         }
 
-        int best = Integer.MAX_VALUE;
-        int masks = 1 << n;
-        for (int mask = 0; mask < masks; mask++) {
-            int sum = 0;
-            for (int i = 0; i < n; i++) {
-                if ((mask & (1 << i)) != 0) {
-                    sum += w[i];
-                }
-            }
-            int diff = Math.abs(total - 2 * sum);
-            if (diff < best) {
-                best = diff;
-            }
+        double perimeter = 0.0;
+        for (int i = 0; i < n; i++) {
+            int next = (i + 1) % n;
+            double dx = x[i] - x[next];
+            double dy = y[i] - y[next];
+            perimeter += Math.hypot(dx, dy);
         }
 
-        System.out.print(best);
+        double ropeLength = perimeter + 2.0 * Math.PI * r;
+        System.out.printf("%.2f", ropeLength);
     }
 
     private static class FastScanner {
@@ -63,7 +63,26 @@ public class Main {
                 value = value * 10 + (c - '0');
                 c = read();
             }
+
             return value * sign;
+        }
+
+        double nextDouble() throws Exception {
+            return Double.parseDouble(nextToken());
+        }
+
+        String nextToken() throws Exception {
+            int c;
+            do {
+                c = read();
+            } while (c <= ' ' && c != -1);
+
+            StringBuilder token = new StringBuilder();
+            while (c > ' ') {
+                token.append((char) c);
+                c = read();
+            }
+            return token.toString();
         }
     }
 }

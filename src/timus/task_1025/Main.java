@@ -1,16 +1,26 @@
-package timus.task_1877;
+package timus.task_1025;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         FastScanner scanner = new FastScanner();
-        int code1 = scanner.nextInt();
-        int code2 = scanner.nextInt();
+        int k = scanner.nextInt();
+        int[] groups = new int[k];
 
-        if (code1 % 2 == 0 || code2 % 2 == 1) {
-            System.out.print("yes");
-        } else {
-            System.out.print("no");
+        for (int i = 0; i < k; i++) {
+            groups[i] = scanner.nextInt();
         }
+
+        Arrays.sort(groups);
+
+        int groupsNeeded = k / 2 + 1;
+        int supporters = 0;
+        for (int i = 0; i < groupsNeeded; i++) {
+            supporters += groups[i] / 2 + 1;
+        }
+
+        System.out.print(supporters);
     }
 
     private static class FastScanner {

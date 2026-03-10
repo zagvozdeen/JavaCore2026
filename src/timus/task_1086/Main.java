@@ -1,3 +1,5 @@
+package timus.task_1086;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         FastScanner scanner = new FastScanner();
