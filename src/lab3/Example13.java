@@ -35,6 +35,14 @@ import java.util.TreeMap;
 public class Example13 {
     private static final int ELEMENT_COUNT = 11_000_000;
     private static final long GET_BY_INDEX_COUNT = 11_000_000_000L;
+    private static final String FOUR_COLUMN_BORDER =
+            "+------------+--------------------+----------------------+-------------------+";
+    private static final String FOUR_COLUMN_FORMAT =
+            "| %-10s | %-18s | %-20s | %-17s |%n";
+    private static final String TWO_COLUMN_BORDER =
+            "+------------+--------------------------------------+";
+    private static final String TWO_COLUMN_FORMAT =
+            "| %-10s | %-36s |%n";
 
     // Чтобы JIT не выбрасывал вычисления при тесте получения элемента
     private static volatile long blackHole = 0;
@@ -265,43 +273,85 @@ public class Example13 {
     private static void printAddTable(Result arrayDeque, Result sortedMap, Result arrayList) {
         System.out.println();
         System.out.println("Таблица 1. Сравнение времени выполнения операции добавления");
-        System.out.println("| Коллекция  | в начало коллекции | в середину коллекции | в конец коллекции |");
-        System.out.println("| ---------- | ------------------ | -------------------- | ----------------- |");
+        printFourColumnBorder();
+        System.out.printf(
+                FOUR_COLUMN_FORMAT,
+                "Коллекция",
+                "в начало коллекции",
+                "в середину коллекции",
+                "в конец коллекции"
+        );
+        printFourColumnBorder();
         printAddRow(arrayDeque);
         printAddRow(sortedMap);
         printAddRow(arrayList);
+        printFourColumnBorder();
     }
 
     private static void printRemoveTable(Result arrayDeque, Result sortedMap, Result arrayList) {
         System.out.println();
         System.out.println("Таблица 2. Сравнение времени выполнения операции удаления");
-        System.out.println("| Коллекция  | в начале коллекции | в середине коллекции | в конце коллекции |");
-        System.out.println("| ---------- | ------------------ | -------------------- | ----------------- |");
+        printFourColumnBorder();
+        System.out.printf(
+                FOUR_COLUMN_FORMAT,
+                "Коллекция",
+                "в начале коллекции",
+                "в середине коллекции",
+                "в конце коллекции"
+        );
+        printFourColumnBorder();
         printRemoveRow(arrayDeque);
         printRemoveRow(sortedMap);
         printRemoveRow(arrayList);
+        printFourColumnBorder();
     }
 
     private static void printGetTable(Result arrayDeque, Result sortedMap, Result arrayList) {
         System.out.println();
         System.out.println("Таблица 3. Сравнение времени выполнения операции получения элемента по индексу");
-        System.out.println("| Коллекция  | По индексу для " + GET_BY_INDEX_COUNT + " элементов |");
-        System.out.println("| ---------- | ---------------------------------- |");
+        printTwoColumnBorder();
+        System.out.printf(
+                TWO_COLUMN_FORMAT,
+                "Коллекция",
+                "По индексу для " + GET_BY_INDEX_COUNT + " элементов"
+        );
+        printTwoColumnBorder();
         printGetRow(arrayDeque);
         printGetRow(sortedMap);
         printGetRow(arrayList);
+        printTwoColumnBorder();
     }
 
     private static void printAddRow(Result result) {
-        System.out.println("| " + result.name + " | " + result.addFirst + " | " + result.addMiddle + " | " + result.addLast + " |");
+        System.out.printf(
+                FOUR_COLUMN_FORMAT,
+                result.name,
+                result.addFirst,
+                result.addMiddle,
+                result.addLast
+        );
     }
 
     private static void printRemoveRow(Result result) {
-        System.out.println("| " + result.name + " | " + result.removeFirst + " | " + result.removeMiddle + " | " + result.removeLast + " |");
+        System.out.printf(
+                FOUR_COLUMN_FORMAT,
+                result.name,
+                result.removeFirst,
+                result.removeMiddle,
+                result.removeLast
+        );
     }
 
     private static void printGetRow(Result result) {
-        System.out.println("| " + result.name + " | " + result.getByIndex + " |");
+        System.out.printf(TWO_COLUMN_FORMAT, result.name, result.getByIndex);
+    }
+
+    private static void printFourColumnBorder() {
+        System.out.println(FOUR_COLUMN_BORDER);
+    }
+
+    private static void printTwoColumnBorder() {
+        System.out.println(TWO_COLUMN_BORDER);
     }
 
     private static class Result {
