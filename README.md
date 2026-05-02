@@ -16,3 +16,4 @@
 4. [Лабораторная работа №4](https://docs.google.com/document/d/1JXTuylK6pA0vWNFGNrGKOOioSb77b4SIlQXJFtjFh5I/edit?usp=sharing)
 5. [Лабораторная работа №5](https://docs.google.com/document/d/19PyqlaJhWY0EJ41widC-L2Zm8iMja76CVSpMGFAcHgg/edit?usp=sharing)
 6. [Лабораторная работа №6](https://docs.google.com/document/d/1-a4mhfsuQ0o091ewU0spodJzEYZUEfGNfWw93MHnVe4/edit?usp=sharing)
+7. [Лабораторная работа №7](https://docs.google.com/document/d/16VsCgV907LVIAFOuExNpMPUqN_U953hqiyFkeQg1eP8/edit?usp=sharing)
